@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Porsche Style Website</title>
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: #e10600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  a:hover, a:focus {
+    color: #fff;
+  }
+
+  /* Navbar */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    color: #fff;
+    user-select: none;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    margin-left: 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+  nav li a {
+    padding: 0.3rem;
+  }
+  nav li a:hover, nav li a:focus {
+    color: #e10600;
+    border-bottom: 2px solid #e10600;
+  }
+
+  /* Hero */
+  .hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0,0,0,0.85)), url('https://cdn.pixabay.com/photo/2016/03/28/12/11/car-1285173_1280.jpg') no-repeat center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.1em;
+  }
+  .hero p {
+    font-weight: 300;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+  .hero button {
+    background-color: #e10600;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 1rem 3rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+    user-select: none;
+  }
+  .hero button:hover, .hero button:focus {
+    background-color: #b00400;
+  }
+
+  /* Cars showcase */
+  section.cars {
+    padding: 6rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  section.cars h2 {
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+  .car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+  }
+  .car-card {
+    background: #111;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .car-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 16px 48px rgba(225,16,0,0.6);
+  }
+  .car-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .car-content {
+    padding: 1.5rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .car-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.05em;
+  }
+  .car-description {
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #ccc;
+    margin-bottom: auto;
+  }
+  .car-button {
+    margin-top: 1.5rem;
+    align-self: start;
+    background-color: transparent;
+    border: 2px solid #e10600;
+    color: #e10600;
+    padding: 0.5rem 1.8rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .car-button:hover, .car-button:focus {
+    background-color: #e10600;
+    color: #fff;
+  }
+
+  /* About section */
+  section.about {
+    background: #111;
+    padding: 5rem 3rem 7rem;
+    max-width: 900px;
+    margin: 0 auto 5rem;
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.12rem;
+    line-height: 1.65;
+    letter-spacing: 0.05em;
+  }
+  section.about h2 {
+    color: #e10600;
+    font-weight: 900;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Footer */
+  footer {
+    background: #000;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    user-select: none;
+  }
+  footer a {
+    color: #555;
+    margin-left: 0.5em;
+  }
+  footer a:hover, footer a:focus {
+    color: #e10600;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem 2rem;
+    }
+    .hero {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+    section.cars {
+      padding: 4rem 2rem 2rem;
+    }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="Porsche Logo">RADITYA</div>
+  <nav aria-label="Primary navigation">
+    <ul>
+      <li><a href="#models">Models</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" role="banner" aria-label="Hero section with Porsche car image and tagline">
+    <h1>IdeKampus</h1>
+    <p>Sebuah aplikasi mobile yang dirancang untuk membantu mahasiswa mencatat, mengelola, dan mengembangkan ide proyek atau penelitian akademik..</p>
+    <button onclick="location.href='#models'">Lanjut</button>
+  </section>
+
+  <section id="models" class="cars" aria-label="Showcase of Porsche car models">
+    <h2>Our Featured Models</h2>
+    <div class="car-grid">
+      <article class="car-card" tabindex="0" aria-label="Porsche 911">
+        <img class="car-image" src="https://cdn.pixabay.com/photo/2017/09/04/10/13/auto-2718894_1280.jpg" alt="Red Porsche 911" />
+        <div class="car-content">
+          <h3 class="car-title">Porsche 911</h3>
+          <p class="car-description">The iconic Porsche 911 combines timeless design with outstanding performance on the road and track.</p>
+          <button class="car-button" onclick="alert('Learn more about Porsche 911')">Learn More</button>
+        </div>
+      </article>
+      <article class="car-card" tabindex="0" aria-label="Porsche Taycan">
+        <img class="car-image" src="https://cdn.pixabay.com/photo/2020/01/31/17/18/porsche-ceramic-janser-4776788_1280.jpg" alt="White Porsche Taycan" />
+        <div class="car-content">
+          <h3 class="car-title">Porsche Taycan</h3>
+          <p class="car-description">An all-electric sports car with breathtaking acceleration and cutting-edge technology.</p>
+          <button class="car-button" onclick="alert('Learn more about Porsche Taycan')">Learn More</button>
+        </div>
+      </article>
+      <article class="car-card" tabindex="0" aria-label="Porsche Macan">
+        <img class="car-image" src="https://cdn.pixabay.com/photo/2018/11/26/17/05/porsche-3845839_1280.jpg" alt="Black Porsche Macan" />
+        <div class="car-content">
+          <h3 class="car-title">Porsche Macan</h3>
+          <p class="car-description">A compact luxury SUV that offers sporty handling and Porsche performance without compromise.</p>
+          <button class="car-button" onclick="alert('Learn more about Porsche Macan')">Learn More</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="about" aria-label="About Porsche brand">
+    <h2>Passion and Precision</h2>
+    <p>
+      Since 1931, Porsche has been a symbol of uncompromising quality, engineering excellence, and passionate innovation,
+      crafting the world’s most desirable sports cars and SUVs. Every Porsche is a testament to meticulous craftsmanship
+      and automotive artistry.
+    </p>
+  </section>
+</main>
+
+<footer id="contact" aria-label="Contact and legal information">
+  &copy; 2024 Porsche Style Website. All rights reserved.
+  <br/>
+  <a href="mailto:contact@porsche-style.com">contact@porsche-style.com</a>
+</footer>
+
+<script>
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if(target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
+```
